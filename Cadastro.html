@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Curso UiPath - Cadastro</title>
+
+<style>
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f2f2f2;
+}
+
+.container {
+    width: 400px;
+    margin: 80px auto;
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0,0,0,.2);
+}
+
+h2 {
+    text-align: center;
+}
+
+input[type=text],
+input[type=password],
+input[type=number] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+button {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #0078d7;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background:#005a9e;
+}
+
+.sexo label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.msg {
+    margin-top: 15px;
+    color: green;
+    text-align: center;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- LOGIN -->
+
+<div class="container" id="login">
+
+<h2>Login</h2>
+
+<input type="text" id="usuario" placeholder="Usuário">
+<input type="password" id="senha" placeholder="Senha">
+
+<button onclick="login()">Entrar</button>
+
+<p class="msg" id="msgLogin"></p>
+
+</div>
+
+
+<!-- CADASTRO -->
+
+<div class="container" id="cadastro" style="display:none">
+
+<h2>Cadastro</h2>
+
+<input type="text" id="documento" placeholder="Documento">
+<input type="text" id="nome" placeholder="Nome completo">
+
+<p>Sexo:</p>
+
+<div class="sexo">
+<label>
+<input type="radio" name="sexo" value="Masculino">
+Masculino
+</label>
+
+<label>
+<input type="radio" name="sexo" value="Feminino">
+Feminino
+</label>
+</div>
+
+<input type="number" id="idade" placeholder="Idade">
+
+<button onclick="cadastrar()">Cadastrar</button>
+
+<p class="msg" id="msgCadastro"></p>
+
+</div>
+
+
+<script>
+
+function login() {
+
+let user = document.getElementById("usuario").value;
+let pass = document.getElementById("senha").value;
+
+if(user === "Curso" && pass === "Uipath"){
+
+document.getElementById("login").style.display="none";
+document.getElementById("cadastro").style.display="block";
+
+}else{
+document.getElementById("msgLogin").innerText="Usuário ou senha inválidos";
+}
+
+}
+
+
+function cadastrar(){
+
+let documento = document.getElementById("documento").value;
+let nome = document.getElementById("nome").value;
+let idade = document.getElementById("idade").value;
+
+let sexo = document.querySelector('input[name="sexo"]:checked');
+
+if(!documento || !nome || !idade || !sexo){
+alert("Preencha todos os campos");
+return;
+}
+
+document.getElementById("msgCadastro").innerText="Dados cadastrados com sucesso!";
+
+document.getElementById("documento").value="";
+document.getElementById("nome").value="";
+document.getElementById("idade").value="";
+sexo.checked=false;
+
+}
+
+</script>
+
+</body>
+</html>
