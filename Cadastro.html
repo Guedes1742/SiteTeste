@@ -30,11 +30,20 @@ background:#007bff;
 border:none;
 color:white;
 cursor:pointer;
+margin-top:15px;
+}
+
+.secondary{
+background:#6c757d;
 }
 
 .hidden{display:none;}
 
-.radio label{
+.radio-group{
+margin-top:10px;
+}
+
+.radio-option{
 display:flex;
 align-items:center;
 gap:8px;
@@ -52,6 +61,8 @@ text-align:center;
 
 <body>
 
+<!-- LOGIN -->
+
 <div class="container" id="login">
 
 <h2>Login</h2>
@@ -64,13 +75,15 @@ text-align:center;
 
 </div>
 
+<!-- HOME -->
+
 <div class="container hidden" id="home">
 
 <h2>Home</h2>
 
 <p>
-Este site é destinado ao cadastro e cancelamento de benefícios.<br>
-Ambiente fictício para fins educacionais.
+Site fictício destinado ao cadastro e cancelamento de benefícios.<br>
+Ambiente educacional para treinamento UiPath.
 </p>
 
 <select id="acao">
@@ -83,6 +96,8 @@ Ambiente fictício para fins educacionais.
 
 </div>
 
+<!-- CADASTRO -->
+
 <div class="container hidden" id="cadastro">
 
 <h2>Cadastro</h2>
@@ -90,18 +105,26 @@ Ambiente fictício para fins educacionais.
 <input id="doc" placeholder="Documento">
 <input id="nome" placeholder="Nome completo">
 
-<div class="radio">
+<div class="radio-group">
 Sexo:
-<label><input type="radio" name="sexo" value="Masculino"> Masculino</label>
-<label><input type="radio" name="sexo" value="Feminino"> Feminino</label>
+<div class="radio-option">
+<input type="radio" name="sexo" value="Masculino"> Masculino
+</div>
+<div class="radio-option">
+<input type="radio" name="sexo" value="Feminino"> Feminino
+</div>
 </div>
 
 <input id="idade" placeholder="Idade">
 
 <button onclick="cadastrar()">Cadastrar</button>
+<button class="secondary" onclick="voltarHome()">Voltar</button>
+
 <div class="success" id="msgCadastro"></div>
 
 </div>
+
+<!-- CANCELAMENTO -->
 
 <div class="container hidden" id="cancelamento">
 
@@ -113,6 +136,7 @@ Sexo:
 <textarea id="motivo" placeholder="Motivo do cancelamento"></textarea>
 
 <button onclick="cancelar()">Cancelar Benefício</button>
+<button class="secondary" onclick="voltarHome()">Voltar</button>
 
 <div class="success" id="msgCancel"></div>
 
@@ -138,11 +162,11 @@ function continuar(){
 let acao=document.getElementById("acao").value;
 
 if(acao==="cadastro"){
-document.getElementById("home").style.display="none";
+esconderTudo();
 document.getElementById("cadastro").classList.remove("hidden");
 }
 else if(acao==="cancelar"){
-document.getElementById("home").style.display="none";
+esconderTudo();
 document.getElementById("cancelamento").classList.remove("hidden");
 }
 else alert("Selecione uma opção");
@@ -165,6 +189,17 @@ document.getElementById("msgCancel").innerText="Cancelamento realizado com suces
 document.getElementById("docCancel").value="";
 document.getElementById("nomeCancel").value="";
 document.getElementById("motivo").value="";
+}
+
+function voltarHome(){
+esconderTudo();
+document.getElementById("home").classList.remove("hidden");
+}
+
+function esconderTudo(){
+document.getElementById("home").classList.add("hidden");
+document.getElementById("cadastro").classList.add("hidden");
+document.getElementById("cancelamento").classList.add("hidden");
 }
 
 </script>
