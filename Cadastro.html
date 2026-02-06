@@ -47,13 +47,11 @@ margin-top:10px;
 font-weight:bold;
 text-align:center;
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
 <div class="container" id="login">
 
 <h2>Login</h2>
@@ -66,7 +64,6 @@ text-align:center;
 
 </div>
 
-<!-- HOME -->
 <div class="container hidden" id="home">
 
 <h2>Home</h2>
@@ -86,7 +83,6 @@ Ambiente fictício para fins educacionais.
 
 </div>
 
-<!-- CADASTRO -->
 <div class="container hidden" id="cadastro">
 
 <h2>Cadastro</h2>
@@ -107,7 +103,6 @@ Sexo:
 
 </div>
 
-<!-- CANCELAMENTO -->
 <div class="container hidden" id="cancelamento">
 
 <h2>Cancelamento de Benefício</h2>
@@ -126,43 +121,50 @@ Sexo:
 <script>
 
 function login(){
-if(user.value==="Curso" && pass.value==="Uipath"){
-login.style.display="none";
-home.classList.remove("hidden");
+
+let user=document.getElementById("user").value;
+let pass=document.getElementById("pass").value;
+
+if(user==="Curso" && pass==="Uipath"){
+document.getElementById("login").style.display="none";
+document.getElementById("home").classList.remove("hidden");
 }else{
-loginError.innerText="Usuário ou senha inválidos";
+document.getElementById("loginError").innerText="Usuário ou senha inválidos";
 }
 }
 
 function continuar(){
-if(acao.value==="cadastro"){
-home.style.display="none";
-cadastro.classList.remove("hidden");
+
+let acao=document.getElementById("acao").value;
+
+if(acao==="cadastro"){
+document.getElementById("home").style.display="none";
+document.getElementById("cadastro").classList.remove("hidden");
 }
-else if(acao.value==="cancelar"){
-home.style.display="none";
-cancelamento.classList.remove("hidden");
+else if(acao==="cancelar"){
+document.getElementById("home").style.display="none";
+document.getElementById("cancelamento").classList.remove("hidden");
 }
 else alert("Selecione uma opção");
 }
 
 function cadastrar(){
 
-msgCadastro.innerText="Cadastro realizado com sucesso!";
+document.getElementById("msgCadastro").innerText="Cadastro realizado com sucesso!";
 
-doc.value="";
-nome.value="";
-idade.value="";
+document.getElementById("doc").value="";
+document.getElementById("nome").value="";
+document.getElementById("idade").value="";
 document.querySelectorAll('input[name="sexo"]').forEach(e=>e.checked=false);
 }
 
 function cancelar(){
 
-msgCancel.innerText="Cancelamento realizado com sucesso!";
+document.getElementById("msgCancel").innerText="Cancelamento realizado com sucesso!";
 
-docCancel.value="";
-nomeCancel.value="";
-motivo.value="";
+document.getElementById("docCancel").value="";
+document.getElementById("nomeCancel").value="";
+document.getElementById("motivo").value="";
 }
 
 </script>
